@@ -64,7 +64,7 @@ client.on("message", (message) => {
     //Commande: Herizia
 
 client.on("message", (message) => {
-	if(command === "&herizia") {
+	if(message.content === "&herizia") {
         let botIcon = client.user.displayAvatarURL;
         let embed = new Discord.RichEmbed()
             .setTitle('Herizia')
@@ -84,7 +84,7 @@ client.on("message", (message) => {
     //Commande: SONDAGE
 
 client.on("message", (message) => {
-	if(command === "&sondage") {
+	if(message.content === "&sondage") {
         if (!message.member.hasPermission('MANAGE_MESSAGES')) {
             return message.channel.send(
                 "Vous n'avez pas la permission pour faire celà !!!"
@@ -109,7 +109,7 @@ client.on("message", (message) => {
     //Commande: INFO
 
 client.on("message", (message) => {
-	if(command === "&info") {
+	if(message.content === "&info") {
         let botIcon = client.user.displayAvatarURL;
         let embed = new Discord.RichEmbed()
             .setDescription('__***Les infos***__')
@@ -127,7 +127,7 @@ client.on("message", (message) => {
     //Commande: SAY
 
 client.on("message", (message) => {
-	if(command === "&say") {
+	if(message.content === "&say") {
         if (!message.member.hasPermission('MANAGE_MESSAGES'))
             return message.channels.send(
                 "Vous n'avez pas la permission pour faire celà !!!"
@@ -143,7 +143,7 @@ client.on("message", (message) => {
     //Commande: IP
 
 client.on("message", (message) => {
-	if(command === "&ip") {
+	if(message.content === "&ip") {
         return message.channel.send('SOON');
     }
 });
@@ -153,7 +153,7 @@ client.on("message", (message) => {
     //Commande: CLEAR
 
 client.on("message", (message) => {
-	if(command === "&clear") {
+	if(message.content === "&clear") {
         if (!message.member.hasPermission("MANAGE_MESSAGES"))
             return message.reply("Vous n'avez pas la permission");
         if (!args[0])
@@ -174,7 +174,7 @@ client.on("message", (message) => {
     //Commande: SITE
 
 client.on("message", (message) => {
-	if(command === "&site") {
+	if(message.content === "&site") {
         return message.channel.send('L"url du site est : http://hydaria.co.nf/');
     }
 });
@@ -193,7 +193,7 @@ client.on("message", (message) => {
     //Commande: KICK
 
 client.on("message", (message) => {
-	if(command === "&kick") {
+	if(message.content === "&kick") {
         let kickedUser = message.guild.member(
             message.mentions.users.first() || message.guild.members.get(args[0])
         );
