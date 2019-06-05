@@ -1,6 +1,7 @@
-const config = require('./config.json');
 const Discord = require('discord.js');
 const bot = new Discord.Client({disableEveryone: true });
+
+var prefix = ("&")
 
 bot.on('ready', async () => {
     console.log('HydariaBot est en ligne !!! Vous pouvez désormais être tranquille car au moins, le discord est protéger par lui !!!');
@@ -25,6 +26,8 @@ bot.on('message', async message => {
     let messageArray = message.content.split(" ");
     let command = messageArray[0];
     let args = messageArray.slice(1);
+
+bot.login("NDE0ODU1OTc5NTcwODIzMTY4.D1MTSg.MCaegpRN3Tf2Z1gX41T0L62uuGg");
 
     //COMMANDES !!!
 
@@ -196,5 +199,3 @@ bot.on('message', async message => {
         kickChannel.send(kickEmbed);
     }
 });
-
-bot.login(config.token);
