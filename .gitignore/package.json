@@ -1,0 +1,14 @@
+{
+  "name": "hydariabot",
+  "version": "0.1.0",
+  "description": "Un bot Pour Discord",
+  "main": "main.js",
+  "scripts": {
+    "test": ""
+  },
+  "author": "KelenS",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^11.4.2"
+  }
+}
