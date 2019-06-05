@@ -27,7 +27,7 @@ bot.on('message', async message => {
     let command = messageArray[0];
     let args = messageArray.slice(1);
 
-bot.login("NDE0ODU1OTc5NTcwODIzMTY4.XPfFyQ.rvRTAhsu0c2yNjXj0m0bWedtwXs");
+bot.login(process.env.TOKEN);
 
     //COMMANDES !!!
 
