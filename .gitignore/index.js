@@ -5,7 +5,7 @@ client.login("NTg1ODY5MzI2MTA4ODUyMjg1.XPf6pA.R9ya8y4A7ZAxDIEAe_MQK6zmc84")
 
 var prefix = ("&")
 
-emitter.setMaxListeners (50)
+.setMaxListeners (50)
 
 client.on("message", (message) => {
 
