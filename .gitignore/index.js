@@ -157,7 +157,7 @@ client.on("message", (message) => {
 
     //Commande: CLEAR
 
-	if(message.content === "&clear") {
+	if(message === "&clear") {
         if (!message.member.hasPermission("MANAGE_MESSAGES"))
             return message.reply("Vous n'avez pas la permission");
         if (!args[0])
