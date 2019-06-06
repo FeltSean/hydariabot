@@ -157,7 +157,6 @@ client.on("message", (message) => {
 
     //Commande: CLEAR
 
-client.on("message", (message) => {
 	if(message.content === "&clear") {
         if (!message.member.hasPermission("MANAGE_MESSAGES"))
             return message.reply("Vous n'avez pas la permission");
@@ -171,8 +170,7 @@ client.on("message", (message) => {
                 .send(`J'ai supprimé ${args[0]} messages pour vous !!!`)
                 .then(msg => msg.delete(5000));
         });
-    }
-});
+    };
     
 
 
