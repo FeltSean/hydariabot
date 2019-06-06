@@ -1,9 +1,11 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-client.login(process.env.TOKEN)
+client.login("NTg1ODY5MzI2MTA4ODUyMjg1.XPf6pA.R9ya8y4A7ZAxDIEAe_MQK6zmc84")
 
 var prefix = ("&")
+
+emitter.setMaxListeners (50)
 
 client.on("message", (message) => {
 
@@ -71,9 +73,9 @@ client.on("message", (message) => {
             .setDescription('***Nous ne sommes actuellement plus en partenariat avec Herizia!!!***')
             .setColor('#dc143c')
             .setThumbnail(botIcon)
-            .addField(`Site`, '')
-            .addField(`IP`, '')
-            .addField(`Discord`, ``)
+            .addField(`Site`,)
+            .addField(`IP`,)
+            .addField(`Discord`,)
 
         return message.channel.send(embed);
     }
@@ -132,7 +134,7 @@ client.on("message", (message) => {
             return message.channels.send(
                 "Vous n'avez pas la permission pour faire celà !!!"
             );
-        let messageToBot = args.join(" ");
+        let messageToBot = args.join(".");
         message.delete();
         message.channel.send(messageToBot);
     }
