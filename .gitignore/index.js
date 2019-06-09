@@ -76,6 +76,6 @@ client.on("command", command => {
         if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("No");
         let botmessage = args.join(" ");
         message.delete().catch();
-        message.channel.send(botmessage);
+        message.channel.send('botmessage');
     };
 });
