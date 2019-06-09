@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const fs = require('fs');
 const client = new Discord.Client();
+const bot = new Discord.Bot();
 
 client.commands = new Discord.Collection();
 
@@ -71,11 +72,11 @@ client.on("message", message => {
     };
 });
 
-client.on("command", command => {
+bot.on("command", command => {
     if (command === ("&say")) {
         if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("No");
         let botmessage = args.join(" ");
         message.delete().catch();
-        message.channel.send('botmessage');
+        message.channel.send(botmessage);
     };
 });
