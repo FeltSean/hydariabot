@@ -20,5 +20,5 @@ module.exports.run = async (client, message, args) => {
 };
 
 modules.exports.help = {
-    name: "sondage"
+    command: "sondage"
 };
