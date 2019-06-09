@@ -72,11 +72,10 @@ client.on("message", message => {
 });
 
 client.on("command", command => {
-    if (command === ("&say"))
-    {
+    if (command === ("&say")) {
         if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("No");
         let botmessage = args.join(" ");
         message.delete().catch();
         message.channel.send(botmessage);
-    }
+    };
 });
