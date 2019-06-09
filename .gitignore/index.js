@@ -86,9 +86,9 @@ client.on("command", command =>
     if (command === ("&say")) 
     {
         // Si le bot à la permission "MANAGE_MESSAGES" //
-        if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("No");
+        if(!message.member.hasPermission("MANAGE_MESSAGES"));
         // Change le message de la personne par le message du bot //
         message.delete();
-        message.channel.sendMessagetoBot;
+        message.channel.send(messageToBot);
     };
 });
