@@ -1,38 +1,39 @@
 const Discord = require('discord.js');
 const fs = require('fs');
 const client = new Discord.Client();
-
-client.on("bot", bot => {
-    bot.commands = new Discord.Collection();
-
+var prefix = ("&")^
 
 client.login(process.env.TOKEN)
 
-var prefix = ("&")
-
-bot.on("emitter", (emitter) => {
+client.on("emitter", (emitter) => 
+{
     emitter.setMaxListeners (50)
 });
 
 
-bot.on("message", (message) => {
+client.on("message", (message) => 
+{
 
-	if(message.content === "bonjour") {
-		message.channel.send("Salutation !!!")
+    if(message.content === "bonjour") 
+    {
+		message.channel.send(" Salutation !!! ")
 	}
 
-	if(message.content === "help"){
-		message.channel.send("As tu besoin d'aide, si oui, écrit &help !!!")
+    if(message.content === "help")
+    {
+		message.channel.send(" As tu besoin d'aide, si oui, écrit &help !!! ")
 	}
 });
 
-bot.on('ready', async () => {
-    console.log(`${bot.user.username} est en ligne !!!`);
-    bot.user.setActivity('http://hydaria.webou.net/Hydaria.html');
+client.on('ready', async () => 
+{
+    console.log(` ${client.user.username} est en ligne !!! `);
+    client.user.setActivity(' Faites &help !!! ');
 });
 
-bot.on('message', async message => {
-	if (message.author.bot) return;
+client.on('message', async message => 
+{
+	if (message.author.client) return;
 	if (message.channel.type === 'dm') return;
 
 	let prefix = config.prefix;
@@ -41,21 +42,25 @@ bot.on('message', async message => {
 	let args = messageArray.slice(1);
 });
 
-bot.on('guildMemberAdd', member =>{
-    member.guild.channels.get('572902475842060319').send(':tada: **Bienvenue** ' + member.user + ':smile: **Nous sommes** ' + member.guild.memberCount);
-    console.log("Une personne vient de rejoindre le serveur discord !!!")   
+client.on('guildMemberAdd', member =>
+{
+    member.guild.channels.get('572902475842060319').send(' :tada: **Bienvenue** ' + member.user + ':smile: **Nous sommes** ' + member.guild.memberCount );
+    console.log(" Une personne vient de rejoindre le serveur discord !!! Super, non ??? ")   
 });
 
-bot.on('guildMemberRemove', member =>{
-    member.guild.channels.get('572902475842060319').send(' **Aurevoir** ' + member.user + ':smile: **Nous sommes** ' + member.guild.memberCount);
-    console.log("Une personne vient de quitter le serveur discord !!!")
+client.on('guildMemberRemove', member => 
+{
+    member.guild.channels.get('572902475842060319').send(' **Aurevoir** ' + user.username + ':smile: **Nous sommes** ' + member.guild.memberCount );
+    console.log(" Une personne vient de quitter le serveur discord !!! Dommage, mais comme dit le proverbe: un de perdu, dix de retrouvé !!! ")
 });
 
-bot.on('message' , message => {
-    // Si le message est "KelenS"
-    if (message.content === "KelenS") {
-        // Envoie "le lien de la chaine youtube de KelenS" dans le salon
-        message.channel.send('https://www.youtube.com/channel/UC0iUyQ8oV57YKruLNlF127g/videos');
+client.on('message' , message => 
+{
+    // Si le message est "KelenS" !!! //
+    if (message.content === "KelenS") 
+    {
+        // Envoie "le lien de la chaine youtube de KelenS" dans le salon actuel !!! //
+        message.channel.send(' https://www.youtube.com/channel/UC0iUyQ8oV57YKruLNlF127g/videos ');
     }
 });
 
@@ -65,19 +70,26 @@ bot.on('message' , message => {
 
 
 
-bot.on("message", message => {
+client.on("message", message => 
+{
+    // Si le message contient "&ip" //
     if (message.content === ("&ip")) 
     {
-        message.channel.sendMessage('SOON');
+        // Envoie le message "SOON" //
+        message.channel.sendMessage(' SOON ');
     };
 });
 
-bot.on("command", command => {
-    if (command === ("&say")) {
+client.on("command", command => 
+{
+    // Si la commande est &say //
+    if (command === ("&say")) 
+    {
+        // Si le bot à la permission "MANAGE_MESSAGES" //
         if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("No");
+        // Changer le message de la personne par le message du bot //
         let botmessage = args.join(" ");
         message.delete().catch();
         message.channel.send(botmessage);
     };
-});
 });
