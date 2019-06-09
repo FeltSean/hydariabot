@@ -72,8 +72,9 @@ client.on("message", message => {
 
     if (message.content === ("&say"))
     {
-        let messageToBot = args.join(' ');
-        message.delete();
-        message.channel.send(messageToBot);
+        if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("No");
+        let botmessage = args.join(" ");
+        message.delete().catch();
+        message.channel.send(botmessage);
     };
 });
