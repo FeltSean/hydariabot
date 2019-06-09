@@ -68,7 +68,7 @@ client.on("message", message => {
     if (message.content === ("&ip")) 
     {
         message.channel.sendMessage('SOON');
-    }
+    };
 
     if (message.content === ("&say"))
     {
@@ -77,7 +77,7 @@ client.on("message", message => {
             "Vous n'avez pas la permission pour faire celà !!!"
         );
         let messageToBot = args.join(' ');
-        message.delete().catch();
+        message.delete();
         message.channel.send(messageToBot);
-    }
+    };
 });
