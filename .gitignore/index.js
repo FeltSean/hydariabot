@@ -79,5 +79,4 @@ bot.on("command", command => {
         message.channel.send(botmessage);
     };
 });
-})
-
+});
