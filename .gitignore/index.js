@@ -6,7 +6,7 @@ client.on("bot", bot => {
     bot.commands = new Discord.Collection();
 
 
-bot.login(process.env.TOKEN)
+client.login(process.env.TOKEN)
 
 var prefix = ("&")
 
