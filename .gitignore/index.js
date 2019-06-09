@@ -64,7 +64,7 @@ client.on('message' , message => {
 
 
 
-Client.on("message", message => {
+client.on("message", message => {
     if (message.content === ("&ip")) 
     {
         message.channel.sendMessage('SOON');
