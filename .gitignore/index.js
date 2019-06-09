@@ -4,20 +4,23 @@ const client = new Discord.Client();
 
 client.commands = new Discord.Collection();
 
-fs.readdir(`./`, (err, files) => {
-    if (err) console.log(err);
+client.on("command", (command) => {
+    fs.readdir(`./`, (err, files) => {
+        if (err) console.log(err);
 
-    let jsFile = files.filter(f => f.split('.').pop() ==='js');
-    if (jsFile.lenght <= 0) {
-        console.log('Je ne trouve pas la commande');
-        return;
-    }
+        let jsFile = files.filter(f => f.split('.').pop() ==='js');
+        if (jsFile.lenght <= 0) {
+            console.log('Je ne trouve pas la commande');
+            return;
+        }
 
-    jsFile.forEach((f, i) => {
-        let props = require(`./${f}`);
-        client.commands.set(props.help.command, props);
+        jsFile.forEach((f, i) => {
+            let props = require(`./${f}`);
+            client.commands.set(props.help.command, props);
+        });
     });
 });
+
 
 client.login(process.env.TOKEN)
 
