@@ -9,7 +9,7 @@ client.on("command", (command) => {
         if (err) console.log(err);
 
         let jsFile = files.filter(f => f.split('.').pop() ==='js');
-        if (jsFile.lenght => 0) {
+        if (jsFile.lenght <= 0) {
             console.log('Je ne trouve pas la commande');
             return;
         }
