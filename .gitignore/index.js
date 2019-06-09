@@ -15,8 +15,7 @@ client.on("command", (command) => {
         }
 
         jsFile.forEach((f, i) => {
-            let props = require(`./${f}`);
-            client.commands.set(props.help.command, props);
+            client.commands.set(help.command);
         });
     });
 });
