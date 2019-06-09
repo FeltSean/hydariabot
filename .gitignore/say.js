@@ -5,9 +5,9 @@ module.exports.run = async (client, message, args) => {
     return message.channels.send(
         "Vous n'avez pas la permission pour faire celà !!!"
     );
-let messageToBot = args.join(".");
-message.delete();
-message.channel.send(messageToBot);
+    let messageToBot = args.join(' ');
+    message.delete().catch();
+    message.channel.send(messageToBot);
 };
 
 modules.exports.help = {
