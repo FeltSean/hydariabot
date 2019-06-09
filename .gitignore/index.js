@@ -4,22 +4,6 @@ const client = new Discord.Client();
 
 client.commands = new Discord.Collection();
 
-client.on("command", (command) => {
-    fs.readdir('say.js', (err, files) => {
-        if (err) console.log(err);
-
-        let jsFile = files.filter(f => f.split('.').pop() === 'js');
-        if (jsFile.lenght <= 0) {
-            console.log('Je ne trouve pas la commande');
-            return;
-        }
-
-        jsFile.forEach((f, i) => {
-            client.commands.set(help.command);
-        });
-    });
-});
-
 
 client.login(process.env.TOKEN)
 
@@ -54,9 +38,6 @@ client.on('message', async message => {
 	let messageArray = message.content.split(' ');
 	let command = messageArray[0];
 	let args = messageArray.slice(1);
-
-	let commandFile = client.commands.get(command.slice(prefix.length));
-	if (commandFiles) commandFile.run(client, message, args);
 });
 
 client.on('guildMemberAdd', member =>{
@@ -74,5 +55,15 @@ client.on('message' , message => {
     if (message.content === "KelenS") {
         // Envoie "le lien de la chaine youtube de KelenS" dans le salon
         message.channel.send('https://www.youtube.com/channel/UC0iUyQ8oV57YKruLNlF127g/videos');
+    }
+});
+
+
+
+// COMMANDES //
+
+client.on("command", (command) => {
+    if (command === '&ip') {
+     message.channel.sendMessage('SOON');
     }
 });
