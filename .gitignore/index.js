@@ -83,7 +83,7 @@ client.on("message", message =>
 client.on("message", message => 
 {
     // Si la commande est &say //
-    if (message === ("&say")) 
+    if (message.content === ("&say")) 
     {
         // Si le bot à la permission "MANAGE_MESSAGES" //
         if(!message.member.hasPermission("MANAGE_MESSAGES"));
