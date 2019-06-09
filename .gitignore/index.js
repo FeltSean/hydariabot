@@ -15,7 +15,7 @@ fs.readdir(`./`, (err, files) => {
 
     jsFile.forEach((f, i) => {
         let props = require(`./${f}`);
-        client.commands.set(props.help.name, props);
+        client.commands.set(props.help.command, props);
     });
 });
 
