@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const fs = require('fs');
 const client = new Discord.Client();
 
-bot.commands = new Discord.Collection();
+client.commands = new Discord.Collection();
 
 fs.readdir(`./`, (err, files) => {
     if (err) console.log(err);
@@ -15,7 +15,7 @@ fs.readdir(`./`, (err, files) => {
 
     jsFile.forEach((f, i) => {
         let props = require(`./${f}`);
-        bot.commands.set(props.help.name, props);
+        client.commands.set(props.help.name, props);
     });
 });
 
