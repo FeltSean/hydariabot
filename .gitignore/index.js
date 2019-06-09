@@ -62,8 +62,11 @@ client.on('message' , message => {
 
 // COMMANDES //
 
-client.on("command", (command) => {
-    if (command === '&ip') {
+
+
+Client.on("message", message => {
+    if (message.content === ("&ip")) 
+    {
         message.channel.sendMessage('SOON');
     }
 });
