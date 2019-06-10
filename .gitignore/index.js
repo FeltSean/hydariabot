@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 var prefix = ("&")^
 
-client.login("NTg1ODY5MzI2MTA4ODUyMjg1.XP2Tbg._sKBl7lqB2p7T1lnOOqVxQAm18o");
+client.login(process.env.TOKEN);
 
 client.on("emitter", (emitter) => 
 {
