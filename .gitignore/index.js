@@ -1,15 +1,13 @@
 const Discord = require('discord.js');
-const fs = require('fs');
 const client = new Discord.Client();
 var prefix = ("&")^
 
-client.login(process.env.TOKEN)
+client.login("NTg1ODY5MzI2MTA4ODUyMjg1.XP2Tbg._sKBl7lqB2p7T1lnOOqVxQAm18o");
 
 client.on("emitter", (emitter) => 
 {
-    emitter.setMaxListeners (50)
+    emitter.setMaxListeners (50);
 });
-
 
 client.on("message", (message) => 
 {
@@ -42,16 +40,28 @@ client.on('message', async message =>
 	let args = messageArray.slice(1);
 });
 
-client.on('guildMemberAdd', member =>
-{
-    member.guild.channels.get('572902475842060319').send(' :tada: **Bienvenue** ' + member.user + ':smile: **Nous sommes** ' + member.guild.memberCount );
-    console.log(" Une personne vient de rejoindre le serveur discord !!! Super, non ??? ")   
+client.on('guildMemberAdd', member => {
+    const welcomechanel = member.guild.channels.find((x) => x.id === '572902475842060319');
+    let b_embed = new Discord.RichEmbed()
+    .setColor('RANDOM')
+    .setDescription(`${member.user.username} vient de rejoindre` + `nous sommes désormais` + member.guild.memberCount `!!!` )
+    console.log("Une personne vient de rejoindre notre Discord !!!")
+    return welcomechanel.send(b_embed)
 });
 
-client.on('guildMemberRemove', member => 
-{
-    member.guild.channels.get('572902475842060319').send(' **Aurevoir** ' + user.username + ':smile: **Nous sommes** ' + member.guild.memberCount );
-    console.log(" Une personne vient de quitter le serveur discord !!! Dommage, mais comme dit le proverbe: un de perdu, dix de retrouvé !!! ")
+client.on('guildMemberRemove', member => {
+    const welcomechanel = member.guild.channels.find((x) => x.id === '572902475842060319');
+    let a_embed = new Discord.RichEmbed()
+    .setColor('RANDOM')
+    .setDescription(' **Aurevoir** ' + user.username + `:smile: nous sommes désormais` + member.guild.memberCount `!!!` )
+    console.log(" Une personne vient de quitter notre serveur Discord !!! Dommage, mais comme dit le proverbe: un de perdu, dix de retrouvé !!! ")
+    return welcomechanel.send(a_embed)
+});
+
+client.on("message", message => {
+    if (message.content === ("serverlist")) {
+        message.channel.send(client.guilds.map(r => r.name + ` | **${r.memberCount}** membres`))
+    }
 });
 
 client.on('message' , message => 
@@ -76,20 +86,57 @@ client.on("message", message =>
     if (message.content === ("&ip")) 
     {
         // Envoie le message "SOON" //
-        message.channel.sendMessage(' SOON ');
+        message.channel.sendMessage(` Bientôt, veuillez patienter s'il vous plait `);
+        console.log(" Une personne vient d'utiliser la commande &ip pour voir l'ip du serveur !!! ")
     };
 });
 
-client.on("message", message => 
-{
-    // Si la commande est &say //
-    if (message.content === ("&say")) 
-    {
-        // Si le bot à la permission "MANAGE_MESSAGES" //
-        if(!message.member.hasPermission("MANAGE_MESSAGES"));
-        // Change le message de la personne par le message du bot //
-        let messageToBot = args.join("");
-        message.delete();
-        message.channel.send(messageToBot);
-    };
+client.on("message", message => {
+    // Si la commande est &help //
+    if (message.content === ("&help")) {
+        let botIcon = client.user.displayAvatarURL;
+        let embed = new Discord.RichEmbed()
+            .setDescription('__***Les commandes***__')
+            .setColor('#dc143c')
+            .setThumbnail(botIcon)
+            .addField('Nom du bot', client.user.username)
+            .addField('Commandes', '---------------')
+            .addField('&info', 'Renvoie des informations sur le bot')
+            .addField('&say', 'Fait une annonce')
+            .addField('&ip', `Montre l'ip du serveur`)
+            .addField('&clear', 'Supprime certains message')
+            .addField('&site', `Montre l'URL du site officiel du serveur`)
+            .addField('&kick', 'Expulse les personnes')
+            .addField('serverlist', 'Enonce combien on est sur Hydaria');
+    
+        return message.channel.send(embed);
+    }
+});
+
+client.on("message", message => {
+    // Si la commande est &clear //
+    if (message.content === ("&clear")) {
+        if (!message.member.hasPermission("MANAGE_MESSAGES"))
+        return message.reply("Vous n'avez pas la permission");
+        if (!args[0])
+        return message.reply(
+            "Syntaxe: &clear <entrer le nombre de message à supprimer"
+    );
+    
+        message.channel.bulkDelete(args[0]).then(() => {
+            message.channel
+                .send(`J'ai supprimé ${args[0]} messages pour vous !!!`)
+                .then(msg => msg.delete(5000));
+        });
+    }
+});
+
+client.on("message", message => {
+    // Si la commande est &site //
+    if (message.content === ("&site")) {
+        let embed = new Discord.RichEmbed()
+            .setDescription(' Voici le lien du site internet : http://hydaria.webou.net/Hydaria.html !!! ')
+            .setColor('#dc143c');
+        return message.channel.send(embed);
+    }
 });
