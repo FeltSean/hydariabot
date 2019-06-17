@@ -41,21 +41,13 @@ client.on('message', async message =>
 });
 
 client.on('guildMemberAdd', member => {
-    const welcomechanel = member.guild.channels.find((x) => x.name === '【🏡】nouveaux' );
-    let embed = new Discord.RichEmbed()
-    .setDescription(`${member.user.username} vient de rejoindre` `!!!` )
-    .setColor('green');
-    console.log("Une personne vient de rejoindre notre Discord !!!")
-    return welcomechanel.send(embed);
+    member.guild.channels.find("name", "【🏡】nouveaux")
+    .send(` Bienvenue a toi ${member} sur ${SERVER}, nous sommes actuellement ${memberCount} !!! `)
 });
 
 client.on('guildMemberRemove', member => {
-    const welcomechanel = member.guild.channels.find((x) => x.name === '【🏡】nouveaux');
-    let embed = new Discord.RichEmbed()
-    .setDescription(' **Aurevoir** ' + `${member.user.username}` `!!!` )
-    .setColor('red');    
-    console.log(" Une personne vient de quitter notre serveur Discord !!! Dommage, mais comme dit le proverbe: un de perdu, dix de retrouvé !!! ")
-    return welcomechanel.send(embed);
+    member.guild.channels.find("name", "【🏡】nouveaux")
+    .send(` Aurevoir ${member}, nous sommes actuellement ${memberCount} !!! `)
 });
 
 client.on("message", message => {
