@@ -41,21 +41,21 @@ client.on('message', async message =>
 });
 
 client.on('guildMemberAdd', member => {
-    const welcomechanel = member.guild.channels.find((x) => x.id === '572902475842060319' );
-    let b_embed = new Discord.RichEmbed()
+    const welcomechanel = member.guild.channels.find((x) => x.name === '【🏡】nouveaux' );
+    let embed = new Discord.RichEmbed()
     .setDescription(`${member.user.username} vient de rejoindre` + `nous sommes désormais` + member.guild.memberCount `!!!` )
     .setColor('green');
     console.log("Une personne vient de rejoindre notre Discord !!!")
-    return welcomechanel.send(b_embed);
+    return welcomechanel.send(embed);
 });
 
 client.on('guildMemberRemove', member => {
-    const welcomechanel = member.guild.channels.find((x) => x.id === '572902475842060319');
-    let a_embed = new Discord.RichEmbed()
-    .setDescription(' **Aurevoir** ' + user.username + `:smile: nous sommes désormais` + member.guild.memberCount `!!!` )
+    const welcomechanel = member.guild.channels.find((x) => x.name === '【🏡】nouveaux');
+    let embed = new Discord.RichEmbed()
+    .setDescription(' **Aurevoir** ' + `${member.user.username}` + `:smile: nous sommes désormais` + member.guild.memberCount `!!!` )
     .setColor('red');    
     console.log(" Une personne vient de quitter notre serveur Discord !!! Dommage, mais comme dit le proverbe: un de perdu, dix de retrouvé !!! ")
-    return welcomechanel.send(a_embed);
+    return welcomechanel.send(embed);
 });
 
 client.on("message", message => {
