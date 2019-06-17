@@ -42,7 +42,7 @@ client.on('message', async message =>
 
 client.on('guildMemberAdd', member => {
     member.guild.channels.find("name", "【🏡】nouveaux")
-    .send(` Bienvenue a toi **${member}** sur **${SERVER}** !!! `) 
+    .send(` Bienvenue a toi **${member}** sur **HUB - Hydaria** !!! `) 
 }); 
 
 client.on('guildMemberRemove', member => {
