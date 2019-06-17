@@ -41,6 +41,12 @@ client.on('message', async message =>
 });
 
 client.on('guildMemberAdd', member => {
+    member.createDM().then(channel => {
+        return channel.send('Bienvenue sur **HUB - Hydaria** !!! =)' + member.displayName);
+    });
+});
+
+client.on('guildMemberAdd', member => {
     member.guild.channels.find("name", "【🏡】nouveaux")
     .send(` :tada: Bienvenue a toi **${member}** =) sur **HUB - Hydaria** !!! `) 
 }); 
@@ -63,6 +69,14 @@ client.on('message' , message =>
     {
         // Envoie "le lien de la chaine youtube de KelenS" dans le salon actuel !!! //
         message.channel.send(' https://www.youtube.com/channel/UC0iUyQ8oV57YKruLNlF127g/videos ');
+    }
+});
+
+client.on('message', message => {
+    if (message.content === "https://") {
+        message.author.createDM().then(channel => {
+            channel.send(`Il est strictement interdit d'envoyer des liens !!!`);
+        });
     }
 });
 
