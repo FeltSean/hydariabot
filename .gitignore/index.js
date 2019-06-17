@@ -41,17 +41,13 @@ client.on('message', async message =>
 });
 
 client.on('guildMemberAdd', member => {
-    client.on('r', r => {
     member.guild.channels.find("name", "【🏡】nouveaux")
-    .send(` Bienvenue a toi **${member}** sur **${SERVER}**, nous sommes actuellement **${r.memberCount}** !!! `) 
-    });
+    .send(` Bienvenue a toi **${member}** sur **${SERVER}** !!! `) 
 }); 
 
 client.on('guildMemberRemove', member => {
-    client.on('r', r => {
     member.guild.channels.find("name", "【🏡】nouveaux")
-    .send(` Aurevoir **${member}**, nous sommes actuellement **${r.memberCount}** !!! `)        
-    });
+    .send(` Aurevoir **${member}** !!! `)        
 });
 
 client.on("message", message => {
