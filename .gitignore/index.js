@@ -135,7 +135,7 @@ client.on("message", message => {
     // Si la commande est &site //
     if (message.content === ("&site")) {
         let embed = new Discord.RichEmbed()
-            .setDescription(' Voici le lien du site internet : http://hydaria.webou.net/Hydaria.html !!! ')
+            .setDescription(' Voici le lien du site internet : http://hydaria.websr.fr/ !!! ')
             .setColor('#dc143c');
         return message.channel.send(embed);
     }
