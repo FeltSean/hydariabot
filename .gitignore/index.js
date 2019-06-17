@@ -42,12 +42,12 @@ client.on('message', async message =>
 
 client.on('guildMemberAdd', member => {
     member.guild.channels.find("name", "【🏡】nouveaux")
-    .send(` Bienvenue a toi ${member} sur ${SERVER}, nous sommes actuellement ${memberCount} !!! `)
+    .send(` Bienvenue a toi **${member}** sur **${SERVER}**, nous sommes actuellement **${r.memberCount}** !!! `)
 });
 
 client.on('guildMemberRemove', member => {
     member.guild.channels.find("name", "【🏡】nouveaux")
-    .send(` Aurevoir ${member}, nous sommes actuellement ${memberCount} !!! `)
+    .send(` Aurevoir **${member}**, nous sommes actuellement **${r.memberCount}** !!! `)
 });
 
 client.on("message", message => {
