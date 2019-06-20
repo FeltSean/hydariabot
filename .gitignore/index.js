@@ -114,7 +114,7 @@ if(message.content.includes('tg')) {
 
     if(message.content.includes('fuck')) {
       message.delete();
-}
+};
 
 
 
