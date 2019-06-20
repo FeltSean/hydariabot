@@ -90,6 +90,7 @@ client.on('message', message => {
 client.on('message', message => {
     if (message.content === "con") {
         message.delete();
+        message.author.send("Pas d'insulte s'il vous plait !!!")
     }
 });
 
