@@ -27,7 +27,7 @@ client.on('ready', async () =>
 {
     console.log(` ${client.user.username} est en ligne !!! `);
     client.user.setActivity(` &help | Membres : ${client.users.size} `);
-    client.guilds.get("479356398497562634").channels.get("572905716906590219").send(' Prêt à vous servir !!! :desktop: ')
+    client.guilds.get("479356398497562634").channels.get("572905863530938398").send(' Prêt à vous servir avec toutes mes fonctionnalités. Commencer par faire &help !!! :desktop: ')
 });
 
 client.on('message', async message => 
@@ -81,11 +81,44 @@ client.on('message', message => {
     }
 });
 
+//Messages déclancheurs
+client.on('message', async message => { 
+
+    if(message.content === "Bonjour"){
+      message.reply("Salut");
+    }
+
+    if(message.content.includes('con')) {
+      message.delete();
+    }
+if(message.content.includes('tg')) {
+      message.delete();
+    }
+
+    if(message.content.includes('pute')) {
+      message.delete();
+    }
+
+    if(message.content.includes('fdp')) {
+      message.delete();
+    }
+
+    if(message.content.includes('merde')) {
+      message.delete();
+    }
+
+
+    if(message.content.includes('ptn')) {
+      message.delete();
+    }
+
+    if(message.content.includes('fuck')) {
+      message.delete();
+}
+
 
 
 // COMMANDES //
-
-
 
 client.on("message", message => 
 {
