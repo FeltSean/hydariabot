@@ -153,30 +153,30 @@ client.on('message', async message => {
       message.reply("Salut");
     }
 
-    if(message.content.includes('con')) {
+    if(message.content('con')) {
       message.delete();
     }
-if(message.content.includes('tg')) {
-      message.delete();
-    }
-
-    if(message.content.includes('pute')) {
+    
+    if(message.content('tg')) {
       message.delete();
     }
 
-    if(message.content.includes('fdp')) {
+    if(message.content('pute')) {
       message.delete();
     }
 
-    if(message.content.includes('merde')) {
+    if(message.content('fdp')) {
       message.delete();
     }
 
-
-    if(message.content.includes('ptn')) {
+    if(message.content('merde')) {
       message.delete();
     }
 
-    if(message.content.includes('fuck')) {
+    if(message.content('ptn')) {
+      message.delete();
+    }
+
+    if(message.content('fuck')) {
       message.delete();
 };
