@@ -12,33 +12,32 @@ client.on("emitter", (emitter) =>
 client.on("message", (message) => 
 {
 
-    if(message.content === "bonjour") 
+    if(message.content === "Bonjour") 
     {
-		message.channel.send(" Salutation !!! ")
-	}
+        message.channel.send(" Salut !!! ")
+    }
 
     if(message.content === "help")
     {
-		message.channel.send(" As tu besoin d'aide, si oui, écrit &help !!! ")
-	}
+        message.channel.send(" As tu besoin d'aide, si oui, écrit &help !!! ")
+    }
 });
 
 client.on('ready', async () => 
 {
     console.log(` ${client.user.username} est en ligne !!! `);
-    client.user.setGame(' &help | Membres : ${client.users.size} ');
-    client.guilds.get("479356398497562634").channels.get("572905716906590219").send("Prêt à vous servir ! :desktop:")
+    client.user.setActivity(' &help | Membres : ${client.users.size} ');
 });
 
 client.on('message', async message => 
 {
-	if (message.author.client) return;
-	if (message.channel.type === 'dm') return;
+    if (message.author.client) return;
+    if (message.channel.type === 'dm') return;
 
-	let prefix = config.prefix;
-	let messageArray = message.content.split(' ');
-	let command = messageArray[0];
-	let args = messageArray.slice(1);
+    let prefix = config.prefix;
+    let messageArray = message.content.split(' ');
+    let command = messageArray[0];
+    let args = messageArray.slice(1);
 });
 
 client.on('guildMemberAdd', member => {
@@ -56,41 +55,6 @@ client.on('guildMemberRemove', member => {
     member.guild.channels.find("name", "【🏡】nouveaux")
     .send(` Aurevoir **${member}** =( !!! `)        
 });
-
-// Messages déclancheurs //
-client.on('message', async message => { 
-
-    if(message.content === "Bonjour"){
-      message.reply("Salut");
-    }
-
-    if(message.content.includes('con')) {
-      message.delete();
-    }
-	if(message.content.includes('tg')) {
-      message.delete();
-    }
-
-    if(message.content.includes('pute')) {
-      message.delete();
-    }
-
-    if(message.content.includes('fdp')) {
-      message.delete();
-    }
-
-    if(message.content.includes('merde')) {
-      message.delete();
-    }
-
-
-    if(message.content.includes('ptn')) {
-      message.delete();
-    }
-
-    if(message.content.includes('fuck')) {
-      message.delete();
-}
 
 client.on("message", message => {
     if (message.content === ("serverlist")) {
@@ -159,24 +123,25 @@ client.on("message", message => {
     // Si la commande est &clear //
     if (message.content === ("&clear")) {
         if (!message.member.hasPermission("MANAGE_MESSAGES"))
-            return message.reply("Vous n'avez pas la permission");
+        return message.reply("Vous n'avez pas la permission");
         if (!args[0])
-            return message.reply
-        (
+        return message.reply(
             "Syntaxe: &clear <entrer le nombre de message à supprimer"
-        )
-
+    );
+    
         message.channel.bulkDelete(args[0]).then(() => {
             message.channel
-            .send(`J'ai supprimé ${args[0]} messages pour vous !!!`)
-            .then(msg => msg.delete(5000));
-        })
-}
+                .send(`J'ai supprimé ${args[0]} messages pour vous !!!`)
+                .then(msg => msg.delete(5000));
+        });
+    }
+});
 
+client.on("message", message => {
     // Si la commande est &site //
     if (message.content === ("&site")) {
         let embed = new Discord.RichEmbed()
-            .setDescription(' Voici le lien du site internet : http://hydaria.webou.net/Hydaria.html !!! ')
+            .setDescription(' Voici le lien du site internet : http://hydaria.websr.fr/ !!! ')
             .setColor('#dc143c');
         return message.channel.send(embed);
     }
