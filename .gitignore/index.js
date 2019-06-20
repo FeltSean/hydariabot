@@ -27,7 +27,7 @@ client.on('ready', async () =>
 {
     console.log(` ${client.user.username} est en ligne !!! `);
     client.user.setActivity(` &help | Membres : ${client.users.size} `);
-    client.guilds.get("479356398497562634").channels.get("572905863530938398").send(' Prêt à vous servir avec toutes mes fonctionnalités. Commencer par faire &help !!! :desktop: ')
+    client.guilds.get("479356398497562634").channels.get("572905863530938398").send(' Prêt à vous servir avec toutes mes fonctionnalités. Commence par faire &help !!! :desktop: ')
 });
 
 client.on('message', async message => 
@@ -84,6 +84,12 @@ client.on('message', message => {
         message.author.createDM().then(channel => {
             channel.send(`Il est strictement interdit d'envoyer des liens !!!`);
         });
+    }
+});
+
+client.on('message', message => {
+    if (message.content === "con") {
+        message.delete();
     }
 });
 
