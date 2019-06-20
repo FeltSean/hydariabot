@@ -48,10 +48,13 @@ client.on('guildMemberAdd', member => {
 });
 
 client.on('guildMemberAdd', member => {
-    member.guild.channels.find("name", "【🏡】nouveaux")
-    member.guild.roles.find("name", "Membre")
-    .send(` :tada: Bienvenue a toi **${member}** =) sur **HUB - Hydaria** !!! `)
+    const role = member.guild.roles.find("name", "Membre")
     member.addRole(role);
+});
+
+client.on('guildMemberAdd', member => {
+    member.guild.channels.find("name", "【🏡】nouveaux")
+    .send(` :tada: Bienvenue a toi **${member}** =) sur **HUB - Hydaria** !!! `)
 }); 
 
 client.on('guildMemberRemove', member => {
