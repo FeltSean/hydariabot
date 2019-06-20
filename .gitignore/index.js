@@ -53,6 +53,12 @@ client.on('guildMemberAdd', member => {
 }); 
 
 client.on('guildMemberRemove', member => {
+    member.createDM().then(channel => {
+        return channel.send('A plus tard sur **HUB - HYDARIA** !!! =(' + member.displayName);
+    });
+});
+
+client.on('guildMemberRemove', member => {
     member.guild.channels.find("name", "【🏡】nouveaux")
     .send(` Aurevoir **${member}** =( !!! `)        
 });
