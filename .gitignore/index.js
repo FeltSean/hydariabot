@@ -26,7 +26,7 @@ client.on("message", (message) =>
 client.on('ready', async () => 
 {
     console.log(` ${client.user.username} est en ligne !!! `);
-    client.user.setActivity( &help | Membres : ${client.users.size} );
+    client.user.setGame(' &help | Membres : ${client.users.size} ');
     client.guilds.get("479356398497562634").channels.get("572905716906590219").send(Prêt à vous servir ! :desktop:)
 });
 
