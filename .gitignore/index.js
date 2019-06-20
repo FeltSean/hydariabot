@@ -145,38 +145,3 @@ client.on("message", message => {
         return message.channel.send(embed);
     }
 });
-
-//Messages déclancheurs
-client.on('message', async message => { 
-
-    if(message.content === "Bonjour"){
-      message.reply("Salut");
-    }
-
-    if(message.content('con')) {
-      message.delete();
-    }
-    
-    if(message.content('tg')) {
-      message.delete();
-    }
-
-    if(message.content('pute')) {
-      message.delete();
-    }
-
-    if(message.content('fdp')) {
-      message.delete();
-    }
-
-    if(message.content('merde')) {
-      message.delete();
-    }
-
-    if(message.content('ptn')) {
-      message.delete();
-    }
-
-    if(message.content('fuck')) {
-      message.delete();
-};
