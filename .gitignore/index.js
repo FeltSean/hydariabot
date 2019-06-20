@@ -81,41 +81,6 @@ client.on('message', message => {
     }
 });
 
-//Messages déclancheurs
-client.on('message', async message => { 
-
-    if(message.content === "Bonjour"){
-      message.reply("Salut");
-    }
-
-    if(message.content.includes('con')) {
-      message.delete();
-    }
-if(message.content.includes('tg')) {
-      message.delete();
-    }
-
-    if(message.content.includes('pute')) {
-      message.delete();
-    }
-
-    if(message.content.includes('fdp')) {
-      message.delete();
-    }
-
-    if(message.content.includes('merde')) {
-      message.delete();
-    }
-
-
-    if(message.content.includes('ptn')) {
-      message.delete();
-    }
-
-    if(message.content.includes('fuck')) {
-      message.delete();
-};
-
 
 
 // COMMANDES //
@@ -180,3 +145,38 @@ client.on("message", message => {
         return message.channel.send(embed);
     }
 });
+
+//Messages déclancheurs
+client.on('message', async message => { 
+
+    if(message.content === "Bonjour"){
+      message.reply("Salut");
+    }
+
+    if(message.content.includes('con')) {
+      message.delete();
+    }
+if(message.content.includes('tg')) {
+      message.delete();
+    }
+
+    if(message.content.includes('pute')) {
+      message.delete();
+    }
+
+    if(message.content.includes('fdp')) {
+      message.delete();
+    }
+
+    if(message.content.includes('merde')) {
+      message.delete();
+    }
+
+
+    if(message.content.includes('ptn')) {
+      message.delete();
+    }
+
+    if(message.content.includes('fuck')) {
+      message.delete();
+};
