@@ -171,9 +171,7 @@ client.on("message", message => {
                 .then(msg => msg.delete(5000));
         });
     }
-});
 
-client.on("message", message => {
     // Si la commande est &site //
     if (message.content === ("&site")) {
         let embed = new Discord.RichEmbed()
@@ -181,4 +179,4 @@ client.on("message", message => {
             .setColor('#dc143c');
         return message.channel.send(embed);
     }
-});
+})
