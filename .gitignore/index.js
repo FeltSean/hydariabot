@@ -179,4 +179,4 @@ client.on("message", message => {
             .setColor('#dc143c');
         return message.channel.send(embed);
     }
-})
+});
