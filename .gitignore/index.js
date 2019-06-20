@@ -26,7 +26,7 @@ client.on("message", (message) =>
 client.on('ready', async () => 
 {
     console.log(` ${client.user.username} est en ligne !!! `);
-    client.user.setActivity(' &help | Membres : ${client.users.size} ');
+    client.user.setActivity(` &help | Membres : ${client.users.size} `);
 });
 
 client.on('message', async message => 
