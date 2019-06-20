@@ -159,23 +159,24 @@ client.on("message", message => {
     // Si la commande est &clear //
     if (message.content === ("&clear")) {
         if (!message.member.hasPermission("MANAGE_MESSAGES"))
-        return message.reply("Vous n'avez pas la permission");
+            return message.reply("Vous n'avez pas la permission");
         if (!args[0])
-        return message.reply(
+            return message.reply
+        (
             "Syntaxe: &clear <entrer le nombre de message à supprimer"
-    );
-    
+        )
+
         message.channel.bulkDelete(args[0]).then(() => {
             message.channel
-                .send(`J'ai supprimé ${args[0]} messages pour vous !!!`)
-                .then(msg => msg.delete(5000));
-        });
-    }
+            .send(`J'ai supprimé ${args[0]} messages pour vous !!!`)
+            .then(msg => msg.delete(5000));
+        })
+}
 
     // Si la commande est &site //
     if (message.content === ("&site")) {
         let embed = new Discord.RichEmbed()
-            .setDescription(' Voici le lien du site internet : http://hydaria.websr.fr/ !!! ')
+            .setDescription(' Voici le lien du site internet : http://hydaria.webou.net/Hydaria.html !!! ')
             .setColor('#dc143c');
         return message.channel.send(embed);
     }
