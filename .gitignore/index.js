@@ -92,6 +92,16 @@ client.on('message', message => {
         message.delete();
         message.author.send("Pas d'insulte s'il vous plait !!!")
     }
+
+    if (message.content === "merde") {
+        message.delete();
+        message.author.send("Pas d'insulte s'il vous plait !!!")
+    }
+
+    if (message.content === "pute") {
+        message.delete();
+        message.author.send("Pas d'insulte s'il vous plait !!!")
+    }
 });
 
 
@@ -141,7 +151,7 @@ client.on("message", message => {
             "Syntaxe: &clear <entrer le nombre de message à supprimer"
     );
     
-        message.channel.bulkDelete(args[0]).then(() => {
+        message.channel.delete(args[0]).then(() => {
             message.channel
                 .send(`J'ai supprimé ${args[0]} messages pour vous !!!`)
                 .then(msg => msg.delete(5000));
