@@ -49,7 +49,7 @@ client.on('guildMemberAdd', member => {
 
 client.on('guildMemberAdd', member => {
     member.guild.channels.find("name", "【🏡】nouveaux")
-    member.guild.roles.find("name", "Membre")
+    const role = member.guild.roles.find("name", "Membre")
     .send(` :tada: Bienvenue a toi **${member}** =) sur **HUB - Hydaria** !!! `)
     member.addRole(role);
 }); 
