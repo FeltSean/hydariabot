@@ -4,7 +4,7 @@ var prefix = ("&")^
 
 client.login(process.env.TOKEN);
 
-process.setMaxListeners(Infinity)
+process.setMaxListeners(Infinity);
 
 client.on("message", (message) => 
 {
