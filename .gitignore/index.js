@@ -5,7 +5,6 @@ var prefix = ("&")^
 client.login(process.env.TOKEN);
 
 client.on("EventEmitter", emitter => {
-    const emitter = new EventEmitter()
     emitter.setMaxListeners(100)
 });
 
