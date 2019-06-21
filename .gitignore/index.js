@@ -130,8 +130,8 @@ client.on("message", message =>
     {
         if(!message.member.hasPermission("MANAGE_MESSAGES")) return;
         let botmessage = args.join("");
-        message.delete().catch();
-        message.channel.send(botmessage);        
+        message.delete();
+        message.channel.send(botmessage); 
     }
 });
 
