@@ -128,8 +128,8 @@ client.on("message", message =>
 {
     if(message.content ===("&say")) 
     {
-        if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("No");
-        let botmessage = args.join(" ");
+        if(!message.member.hasPermission("MANAGE_MESSAGES")) return;
+        let botmessage = args.join("");
         message.delete().catch();
         message.channel.send(botmessage);        
     }
