@@ -4,9 +4,10 @@ var prefix = ("&")^
 
 client.login(process.env.TOKEN);
 
-require('events').EventEmitter.prototype._maxListeners = 100;
-const emitter = new EventEmitter()
-emitter.setMaxListeners(100)
+client.on("EventEmitter", emitter => {
+    const emitter = new EventEmitter()
+    emitter.setMaxListeners(100)
+});
 
 client.on("message", (message) => 
 {
