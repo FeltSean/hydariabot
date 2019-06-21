@@ -125,10 +125,19 @@ client.on("message", message =>
 {
     if(message.content ===("&say")) 
     {
-        if(!message.member.hasPermission("MANAGE_MESSAGES")) return;
-        let botmessage = args.join("");
-        message.delete();
-        message.channel.send(botmessage); 
+        if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send(`Tu n'as pas le droit d'éxécuter cette commande !!!`)
+
+        let argsresult;
+        let mChannel = message.mentions.channels.first()
+
+        message.delete()
+        if(mChannel) {
+            argsresult = args.slice(1).join(" ")
+            mChannel.send(argsresult)
+        } else {
+            argsresult = args.join(" ")
+            message.channel.send(argsresult)
+        } 
     }
 });
 
