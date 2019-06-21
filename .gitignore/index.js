@@ -124,6 +124,17 @@ client.on("message", message =>
     };
 });
 
+client.on("message", message => 
+{
+    if(message.content ===("&say")) 
+    {
+        if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("No");
+        let botmessage = args.join(" ");
+        message.delete().catch();
+        message.channel.send(botmessage);        
+    }
+});
+
 client.on("message", message => {
     // Si la commande est &help //
     if (message.content === ("&help")) {
