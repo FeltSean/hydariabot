@@ -160,18 +160,12 @@ client.on("message", message => {
 client.on("message", message => {
     // Si la commande est &clear //
     if (message.content === ("&clear")) {
-        if (!message.member.hasPermission("MANAGE_MESSAGES"))
-        return message.reply("Vous n'avez pas la permission");
-        if (!args[0])
-        return message.reply(
-            "Syntaxe: &clear <entrer le nombre de message à supprimer"
-    );
-    
-        message.channel.delete(args[0]).then(() => {
-            message.channel
-                .send(`J'ai supprimé ${args[0]} messages pour vous !!!`)
-                .then(msg => msg.delete(5000));
+        if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("oof.");
+        if(!args[0]) return message.channel.send("oof");
+        message.channel.bulkDelete(args[0]).then(() => {
+            message.channel.send(`Je viens de clear ${args[0]} pour vous !!!`).then(msg => msg.delete(5000));
         });
+    
     }
 });
 
