@@ -83,6 +83,7 @@ client.on('message' , message =>
 
 client.on('message', message => {
     if (message.content === "https://") {
+        message.delete();
         message.author.createDM().then(channel => {
             channel.send(`Il est strictement interdit d'envoyer des liens !!!`);
         });
@@ -91,7 +92,7 @@ client.on('message', message => {
 
 client.on('message', message => {
     if (message.content === "con") {
-        message.delete();
+        message.bulkDelete();
         message.author.send("Pas d'insulte s'il vous plait !!!")
     }
 
@@ -116,14 +117,14 @@ client.on("message", message =>
     if (message.content === ("&ip")) 
     {
         // Envoie le message "SOON" //
-        message.channel.sendMessage(` Bientôt, veuillez patienter s'il vous plait `);
+        message.channel.sendMessage(` SOON, mais vous pouvez aller sur le site. Pour voir l'url du site, faites &site !!! `);
         console.log(" Une personne vient d'utiliser la commande &ip pour voir l'ip du serveur !!! ")
     };
 });
 
 client.on("message", message => 
 {
-    if(message.content ===("&say")) 
+    if(message.content ==="&say")
     {
         if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send(`Tu n'as pas le droit d'éxécuter cette commande !!!`)
 
@@ -138,6 +139,7 @@ client.on("message", message =>
             argsresult = args.join(" ")
             message.channel.send(argsresult)
         } 
+        console.log("Une personne vient de faire la commande suivante : &say !!!")
     }
 });
 
@@ -160,6 +162,7 @@ client.on("message", message => {
             .addField('serverlist', 'Enonce combien on est sur Hydaria');
     
         return message.channel.send(embed);
+        console.log(`{author} vient de faire la commande &help !!!`)
     }
 });
 
@@ -179,8 +182,9 @@ client.on("message", message => {
     // Si la commande est &site //
     if (message.content === ("&site")) {
         let embed = new Discord.RichEmbed()
-            .setDescription(' Voici le lien du site internet : http://hydaria.websr.fr/ !!! ')
+            .setDescription(' Voici le lien du site internet : http://hydaria.yj.fr/ !!! ')
             .setColor('#dc143c');
         return message.channel.send(embed);
+        console.log(`${author} vient de faire la commande &site !!!`)
     }
 });
