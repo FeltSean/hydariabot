@@ -20,7 +20,7 @@ fs.readdir('./commands/', (err, files) => {
     })
 })
 
-client.login(process.env.TOKEN);
+client.login(config.token);
 
 process.setMaxListeners(Infinity);
 
@@ -69,8 +69,8 @@ client.on("message", (message) => {
         });
 
 
-        member.guild.channels.find("name", "🏡╿nouveaux-partant")
-            .send(` :tada: Bienvenue a toi **${member}** =) sur **Hydaria - PUBLIC** !!! `);
+        member.guild.channels.find("name", ":house_with_garden:╿nouveaux-partant")
+            .send(`:tada: Bienvenue a toi **${member}** =) sur **Hydaria - PUBLIC** !!!`)
 
         const role = member.guild.roles.find("name", "Membre")
         member.addRole(role);
@@ -78,11 +78,12 @@ client.on("message", (message) => {
 
     client.on('guildMemberRemove', member => {
         member.createDM().then(channel => {
-            channel.send('A plus tard sur **HYDARIA - PUBLIC** !!! =(' + member.displayName);
-        });
+            return channel.send('A plus tard sur HYDARIA - PUBLIC !!! =(' + member.displayName);
+        }).catch(console.error)
+        // On peut catch l'erreur autrement ici (l'utilisateur a peut être désactivé les MP)
 
-        member.guild.channels.find("name", "🏡╿nouveaux-partant")
-            .send(` Aurevoir **${member}** =( et peut être à bientôt !!! `);
+        member.guild.channels.find("name", ":house_with_garden:╿nouveaux-partant")
+            .send(`Aurevoir **${member}** =( et peut être à bientôt !!!`)
     });
 
 
