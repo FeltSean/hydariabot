@@ -7,7 +7,7 @@ const config = require('./config.json');
 
 fs.readdir('./commands/', (err, files) => {
     if (err) console.log(err);
-    console.log( `{$file.lengh}`);
+    console.log(`{$file.lengh}`);
     let jsfile = files.filter(f => f.split(".").pop() === "js")
     if (jsfile.lengh <= 0) {
         console.log('commandes non trouvée.');
@@ -31,7 +31,7 @@ client.on('ready', async () => {
 });
 
 client.on('message', async message => {
-    
+
     client.emit('checkMessage', message);
 
     let prefix = config.prefix;
@@ -41,7 +41,7 @@ client.on('message', async message => {
     var args = message.content.substring(prefix.lengh).split(" ");
 
     let commandeFile = client.commands.get(cmd.slice(prefix.lengh));
-    if(commandeFile) commandeFile.run(client, message, Args, args)
+    if (commandeFile) commandeFile.run(client, message, Args, args)
 
     if (message.author.client) return;
     if (message.channel.type === 'dm') return;
