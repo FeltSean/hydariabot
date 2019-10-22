@@ -65,12 +65,11 @@ client.on("message", (message) => {
 
     client.on('guildMemberAdd', member => {
         member.createDM().then(channel => {
-            channel.send('Bienvenue sur **Hydaria - PUBLIC** !!! =)' + member.displayName);
+            channel.send('Bienvenue sur **Hydaria Corp** !!! =)' + member.displayName);
         });
 
-
-        member.guild.channels.find("name", ":house_with_garden:╿nouveaux-partant")
-            .send(`:tada: Bienvenue a toi **${member}** =) sur **Hydaria - PUBLIC** !!!`)
+        const channel = client.channel.find(r => r.name === "🏡╿nouveaux-partant");
+        channel.send(`${member} à rejoint le serveur !`);
 
         const role = member.guild.roles.find("name", "Membre")
         member.addRole(role);
@@ -78,12 +77,11 @@ client.on("message", (message) => {
 
     client.on('guildMemberRemove', member => {
         member.createDM().then(channel => {
-            return channel.send('A plus tard sur HYDARIA - PUBLIC !!! =(' + member.displayName);
-        }).catch(console.error)
-        // On peut catch l'erreur autrement ici (l'utilisateur a peut être désactivé les MP)
+            channel.send('A plus tard sur **Hydaria Corp** !!! =(' + member.displayName);
+        });
 
-        member.guild.channels.find("name", ":house_with_garden:╿nouveaux-partant")
-            .send(`Aurevoir **${member}** =( et peut être à bientôt !!!`)
+        const channel = client.channel.find(r => r.name === "🏡╿nouveaux-partant");
+        channel.send(`${member} viens de quitter le serveur =(`);
     });
 
 
