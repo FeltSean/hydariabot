@@ -63,8 +63,10 @@ client.on("message", (message) => {
 
     // Nouveau - Partant //
 
-    client.on('guildMemberAdd', member, find => {
-        member.createDM().then(channel => {
+    client.on('guildMemberAdd', member, find => 
+    {
+        member.createDM().then(channel => 
+        {
             channel.send('Bienvenue sur **Hydaria Corp** !!! =)' + member.displayName);
         });
 
@@ -75,8 +77,10 @@ client.on("message", (message) => {
         member.addRole(role);
     });
 
-    client.on('guildMemberRemove', member, find => {
-        member.createDM().then(channel => {
+    client.on('guildMemberRemove', find, member => 
+    {
+        member.createDM().then(channel => 
+        {
             channel.send('A plus tard sur **Hydaria Corp** !!! =(' + member.displayName);
         });
 
@@ -95,8 +99,8 @@ client.on("message", (message) => {
         message.channel.send(' https://www.youtube.com/channel/UC0iUyQ8oV57YKruLNlF127g/videos ');
     }
 
-    // Si le message est "@KelenS-Developpeur" !!! //
-    if (message.content === ("@KelenS-Developpeur")) {
+    // Si le message est "@KelenS-Developpeur#6535" !!! //
+    if (message.content === ("@KelenS-Developpeur#6535")) {
         // Envoie le lien de sa chaine Youtube en disant d'aller s'abonner dans le salon actif !! //
         message.channel.send("Très bon goût, tu peux aller tabonner en cliquant sur le lien ci dessous :");
         message.channel.send(' https://www.youtube.com/channel/UC0iUyQ8oV57YKruLNlF127g/videos ');
