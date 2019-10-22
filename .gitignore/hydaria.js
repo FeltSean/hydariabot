@@ -63,29 +63,31 @@ client.on("message", (message) => {
 
     // Nouveau - Partant //
 
-    client.on('guildMemberAdd', find, member => 
-    {
-        member.createDM().then(channel => 
-        {
-            channel.send('Bienvenue sur **Hydaria Corp** !!! =)' + member.displayName);
+    client.on('guildMemberAdd', member => {
+        member.createDM().then(channel => {
+            return channel.send('Bienvenue sur **Hydaria Corp** !!! =)' + member.displayName);
         });
+    });
 
-        const channel = client.channel.find(r => r.name === "🏡╿nouveaux-partant");
-        channel.send(`${member} à rejoint le serveur !`);
-
+    client.on('guildMemberAdd', member => {
         const role = member.guild.roles.find("name", "Membre")
         member.addRole(role);
     });
 
-    client.on('guildMemberRemove', find, member => 
-    {
-        member.createDM().then(channel => 
-        {
-            channel.send('A plus tard sur **Hydaria Corp** !!! =(' + member.displayName);
-        });
+    client.on('guildMemberAdd', member => {
+        member.guild.channels.find("name", "🏡╿nouveaux-partant")
+        .send(` :tada: Bienvenue a toi **${member}** =) sur **Hydaria Corp** !!! `)
+    }); 
 
-        const channel = client.channel.find(r => r.name === "🏡╿nouveaux-partant");
-        channel.send(`${member} viens de quitter le serveur =(`);
+    client.on('guildMemberRemove', member => {
+        member.createDM().then(channel => {
+        return channel.send('A plus tard sur **Hydaria Corp** !!! =(' + member.displayName);
+        });
+    });
+
+    client.on('guildMemberRemove', member => {
+        member.guild.channels.find("name", "🏡╿nouveaux-partant")
+        .send(` Dommage **${member}** est parti, j'espère qu'il reviendra =( !!! `)        
     });
 
 
