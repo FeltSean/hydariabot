@@ -63,7 +63,7 @@ client.on("message", (message) => {
 
     // Nouveau - Partant //
 
-    client.on('guildMemberAdd', member => {
+    client.on('guildMemberAdd', member, find => {
         member.createDM().then(channel => {
             channel.send('Bienvenue sur **Hydaria Corp** !!! =)' + member.displayName);
         });
@@ -75,7 +75,7 @@ client.on("message", (message) => {
         member.addRole(role);
     });
 
-    client.on('guildMemberRemove', member => {
+    client.on('guildMemberRemove', member, find => {
         member.createDM().then(channel => {
             channel.send('A plus tard sur **Hydaria Corp** !!! =(' + member.displayName);
         });
