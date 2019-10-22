@@ -63,7 +63,7 @@ client.on("message", (message) => {
 
     // Nouveau - Partant //
 
-    client.on('guildMemberAdd', member, find => 
+    client.on('guildMemberAdd', find, member => 
     {
         member.createDM().then(channel => 
         {
