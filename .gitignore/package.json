@@ -2,13 +2,23 @@
   "name": "bot",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "hydaria.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "KelenS",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^11.5.1"
+    "bufferutil": "^4.0.1",
+    "discord.js": "^11.5.1",
+    "enmap": "^5.2.1",
+    "fs": "0.0.1-security",
+    "klaw": "^3.0.0",
+    "libsodium-wrappers": "^0.7.6",
+    "node-fetch": "^2.6.0",
+    "node-gyp": "^6.0.0",
+    "path": "^0.12.7",
+    "rebuild": "^0.1.2",
+    "util": "^0.12.1"
   }
 }

@@ -1,20 +1,17 @@
 const Discord = require('discord.js');
 
-module.exports.run = async (message, msg, args) => {
+module.exports.run = async (client, message, args) => {
 
-    const role = msg.guild.roles.find(r => r.name === args[0]);
-    if (!role) return msg.channel.send("Ce role n'existe pas =(");
-    if (msg.member.roles.find(r => r.name === args[0])) 
-    {
-        msg.member.roles.remove(role);
-        msg.channel.send(`J'ai supprimé le role ${role} à ${msg.author}.`);
-    } 
-    else 
-    {
-        msg.member.roles.author (role);
-        msg.channel.send(`J'ai ajouté le role ${role} à ${msg.author}.`);
+    const role = message.guild.roles.find(r => r.name === args[0]);
+    if (!role) return message.channel.send("Ce rôle n'existe pas !");
+    if (message.member.roles.find(r => r.name === args[0])) {
+        message.member.roles.remove(role);
+        message.channel.send(`J'ai supprimé le rôle ${role} à ${message.author}.`);
+    } else {
+        message.member.roles.add(role);
+        message.channel.send(`J'ai ajouté le rôle ${role} à ${message.author}.`);
     }
-}
+};
 
 module.exports.help = {
     name: "&role"

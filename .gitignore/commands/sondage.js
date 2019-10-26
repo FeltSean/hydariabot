@@ -1,21 +1,33 @@
-const Discord = require('discord.js');
+const Discord = require("discord.js");
 
-module.exports.run = async (args, message) => {
+module.exports.run = async (message, args) => {
+    try {
+      const embed = new Discord.RichEmbed()
+        .setTitle(args.join('.'))
+        .setColor("#7289DA");
+      const pollTitle = await message.channel.send({ embed });
+      await pollTitle.react("✅");
+      await pollTitle.react("❌");
 
-    if (!message.member.hasPermission('MANAGE_MESSAGES')) {
-        return message.channel.send(
-            "Vous n'avez pas les permissions requises pour faire celà !"
-        );
+      // Collecteurs
+
+      const filter = reaction => reaction.emoji.name === "✅";
+      const collector = pollTitle.createReactionCollector(filter, {
+        time: 15000
+      });
+      collector.on("collect", r => console.log(`${r.emoji.name}`));
+      collector.on("end", collected => console.log(`Le bot a collecté ${collected.size} ✅.`));
+
+      const filter1 = reaction => reaction.emoji.name === "❌";
+      const collector1 = pollTitle.createReactionCollector(filter1, {
+        time: 15000
+      });
+      collector1.on("collect", r => console.log(`${r.emoji.name}`));
+      collector1.on("end", collected => console.log(`Le bot a collecté ${collected.size} ❌.`));
+    } catch (error) {
+      console.log(error);
     }
-    if (!args[0]) return message.channel.send('Syntaxe: &poll <question>')
-
-    var embed = new Discord.RichEmbed()
-        .setTitle(`Sondage crée par ${message.author.username}`)
-        .setColor('#dc143c')
-        .setFooter('Appuyez sur les réactions ci dessous.')
-        .setDescription(args.join(' '))
-    message.channel.send(embed);
-}
+};
 
 module.exports.help = {
     name: "&poll"

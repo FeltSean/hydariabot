@@ -1,20 +1,20 @@
-const Discord = require('discord.js');
+const fetch = require("node-fetch");
+const Discord = require("discord.js");
 
-module.exports.run = async (args, message) => {
-
-    if (!message.member.hasPermission("MANAGE_MESSAGES"))
-            return message.reply("Vous n'avez pas la permission");
-        if (!args[1]) return message.reply(
-            "Syntaxe: &clear <entre le nombre de message à supprimer>"
-        );
-
-        message.channel.delete(args[0]).then(() => {
-            message.channel
-                .send(`J'ai supprimé ${args[0]} messages pour vous !!!`)
-                .then(msg => msg.delete(5000));
-        });
-}
+module.exports.run = async (client, message, args) => {
+  try {
+    const msgToDelete = args[0]
+      ? `**${args[0]} messages supprimés.**`
+      : "Salon nettoyé (100 messages maximum par commande)";
+    message.channel.fetchMessages({ limit: args[0] }).then(messages => {
+      message.channel.bulkDelete(messages);
+      message.channel.send(msgToDelete).then(msg => msg.delete(3000));
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
 
 module.exports.help = {
-    name: "&clear"
+  name: "&clear"
 }

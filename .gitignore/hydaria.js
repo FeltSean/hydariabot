@@ -1,52 +1,57 @@
 const Discord = require('discord.js');
+const { TOKEN, PREFIX } = require("./config");
 const client = new Discord.Client();
+const { promisify } = require("util");
 const fs = require('fs')
+const Enmap = require("enmap");
+const klaw = require("klaw");
+const path = require("path");
 client.commands = new Discord.Collection()
 
-const config = require('./config.json');
+// On appel les fichiers que l'on a besoin
 
-fs.readdir('./commands/', (err, files) => {
-    if (err) console.log(err);
-    console.log(`{$file.lengh}`);
-    let jsfile = files.filter(f => f.split(".").pop() === "js")
-    if (jsfile.lengh <= 0) {
-        console.log('commandes non trouvée.');
-        return;
-    }
+client.on("ready", () => require("./events/ready.js")(client));
+client.on("message", msg => require("./events/message.js")(client, msg));
+client.on("guildMemberAdd", member => require("./events/guildMemberAdd.js")(client, member));
+client.on("guildMemberRemove", member => require("./events/guildMemberRemove.js")(client, member));
 
-    jsfile.forEach((f, i) => {
-        let props = require(`./commands/${f}`);
-        client.commands.set(props.help.name, props);
-    })
-})
+fs.readdir('./events/', (error, f) => {
+    if (error) { return console.error(error); }
+    let events = f.filter(f => f.split('.').pop() === 'js');
+    if (events.length <= 0) { return console.log('HydariaBot a trouvé 0 événement.'); }
 
-client.login(process.env.TOKEN);
+    events.forEach((f) => {
+        let events = require(`./events/${f}`);
+        console.log(`${f} événement chargée !`);
+    });
+});
 
-process.setMaxListeners(Infinity);
+fs.readdir('./commands/', (error, f) => {
+    if (error) { return console.error(error); }
+    let commands = f.filter(f => f.split('.').pop() === 'js');
+    if (commands.length <= 0) { return console.log('HydariaBot a trouvé 0 commande.'); }
 
-client.on('ready', async () => {
-    console.log(` ${client.user.username} est en ligne !!! `);
-    client.user.setActivity(` &help | Membres : ${client.users.size} `);
-    client.guilds.get("479356398497562634").channels.get("615309761172209664").send(' Prêt à vous servir avec toutes mes fonctionnalités. Commence par faire &help !!! :desktop: ')
+    commands.forEach((f) => {
+        let commands = require(`./commands/${f}`);
+        console.log(`${f} commande chargée !`);
+        client.commands.set(commands.help.name, commands);
+    });
 });
 
 client.on('message', async message => {
 
     client.emit('checkMessage', message);
 
-    let prefix = config.prefix;
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let Args = messageArray.slice(1);
-    var args = message.content.substring(prefix.lengh).split(" ");
+    var args = message.content.substring(PREFIX.length).split(" ");
 
-    let commandeFile = client.commands.get(cmd.slice(prefix.lengh));
+    let commandeFile = client.commands.get(cmd.slice(PREFIX.lengh));
     if (commandeFile) commandeFile.run(client, message, Args, args)
 
     if (message.author.client) return;
     if (message.channel.type === 'dm') return;
-
-
 });
 
 client.on("message", (message) => {
@@ -60,38 +65,7 @@ client.on("message", (message) => {
     }
 
 
-
-    // Nouveau - Partant //
-
-    client.on('guildMemberAdd', member => {
-        member.createDM().then(channel => {
-            return channel.send('Bienvenue sur **Hydaria Corp** !!! =)' + member.displayName);
-        });
-    });
-
-    client.on('guildMemberAdd', member => {
-        const role = member.guild.roles.find("name", "Membre")
-        member.addRole(role);
-    });
-
-    client.on('guildMemberAdd', member => {
-        member.guild.channels.find("name", "🏡╿nouveaux-partant")
-        .send(` :tada: Bienvenue a toi **${member}** =) sur **Hydaria Corp** !!! `)
-    }); 
-
-    client.on('guildMemberRemove', member => {
-        member.createDM().then(channel => {
-        return channel.send('A plus tard sur **Hydaria Corp** !!! =(' + member.displayName);
-        });
-    });
-
-    client.on('guildMemberRemove', member => {
-        member.guild.channels.find("name", "🏡╿nouveaux-partant")
-        .send(` Dommage **${member}** est parti, j'espère qu'il reviendra =( !!! `)        
-    });
-
-
-
+ 
     // Pub //
 
     // Si le message est "KelenS" !!! //
@@ -122,6 +96,51 @@ client.on("message", (message) => {
             channel.send(`Il est strictement interdit d'envoyer des liens !!!`);
         });
     }
+
+    client.on('messageReactionAdd', (reaction, user) => {
+        var msg = reaction.message;
+        if (!user.bot) {
+            for (var i = 0; i < games.length; i++) {
+                var game = games[i];
+                if ((msg.id == game.msg0.id || msg.id == game.msg1.id) && game.stage < stages.length) {
+                    var letter = unicode[letters.indexOf(reaction.emoji.name)];
+
+                    reaction.fetchUsers().then(usrs => {
+                        var reactors = usrs.array();
+                        var remove_next = function (index) {
+                            if (index < reactors.length)
+                                reaction.remove(reactors[index]).then(() => remove_next(index + 1));
+                        };
+
+                        remove_next(0);
+                    });
+
+                    if (game.guesses.indexOf(letter) == -1) {
+                        game.guesses.push(letter);
+                        if (game.phrase.indexOf(letter) == -1) {
+                            game.stage++;
+                            game.msg0.edit(stages[game.stage]);
+                        } else {
+                            var sik = true;
+                            for (var j = 0; j < game.phrase.length; j++) {
+                                var c = game.phrase[j];
+                                if (c != ' ' && game.guesses.indexOf(c) == -1) {
+                                    sik = false;
+                                }
+                            }
+
+                            if (sik) {
+                                game.msg0.edit(stages[game.stage].replace("o", "o ~ ur not gay.. for now"));
+                            }
+
+                            game.msg1.edit(generateMessage(game.phrase, game.guesses));
+                        }
+                    }
+                }
+                games[i] = game;
+            }
+        }
+    });
 
 
 
@@ -283,3 +302,5 @@ client.on("message", (message) => {
         message.author.send("Pas d'insulte s'il vous plait sinon vous serez sanctionner !!!")
     }
 });
+
+client.login(TOKEN);
