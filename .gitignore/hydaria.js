@@ -65,7 +65,28 @@ client.on("message", (message) => {
     }
 
 
- 
+
+    // insulte logs
+    if (!message.guild) return;
+    let blacklisted = [
+        'connard', 'pute', 'putain', 'ta gueule', 'connasse', 'salop', 'saloppe', 'putin'
+    ];
+    let foundInText = false;
+    for (var i in blacklisted) {
+        if (message.content.toLowerCase().includes(blacklisted[i].toLowerCase())) foundInText = true;
+    }
+    if (foundInText) {
+        message.delete();
+        let embed = new Discord.RichEmbed()
+            .setTitle(`Insulte provenant de:\n ${message.author.username}`)
+            .addField("Message poster sur le channel\n", message.channel.name)
+            .setColor('ff0000')
+            .addField(`\nContenu du message:\n  ${message}`)
+            .setFooter("Bot créer par KelenS")
+        message.author.send("N'envoyer pas d'insulte s'il vous plait")
+        client.guilds.get("479356398497562634").channels.get("637400260796481555").send(embed)
+    }
+
     // Pub //
 
     // Si le message est "KelenS" !!! //
@@ -96,211 +117,6 @@ client.on("message", (message) => {
             channel.send(`Il est strictement interdit d'envoyer des liens !!!`);
         });
     }
-
-    client.on('messageReactionAdd', (reaction, user) => {
-        var msg = reaction.message;
-        if (!user.bot) {
-            for (var i = 0; i < games.length; i++) {
-                var game = games[i];
-                if ((msg.id == game.msg0.id || msg.id == game.msg1.id) && game.stage < stages.length) {
-                    var letter = unicode[letters.indexOf(reaction.emoji.name)];
-
-                    reaction.fetchUsers().then(usrs => {
-                        var reactors = usrs.array();
-                        var remove_next = function (index) {
-                            if (index < reactors.length)
-                                reaction.remove(reactors[index]).then(() => remove_next(index + 1));
-                        };
-
-                        remove_next(0);
-                    });
-
-                    if (game.guesses.indexOf(letter) == -1) {
-                        game.guesses.push(letter);
-                        if (game.phrase.indexOf(letter) == -1) {
-                            game.stage++;
-                            game.msg0.edit(stages[game.stage]);
-                        } else {
-                            var sik = true;
-                            for (var j = 0; j < game.phrase.length; j++) {
-                                var c = game.phrase[j];
-                                if (c != ' ' && game.guesses.indexOf(c) == -1) {
-                                    sik = false;
-                                }
-                            }
-
-                            if (sik) {
-                                game.msg0.edit(stages[game.stage].replace("o", "o ~ ur not gay.. for now"));
-                            }
-
-                            game.msg1.edit(generateMessage(game.phrase, game.guesses));
-                        }
-                    }
-                }
-                games[i] = game;
-            }
-        }
-    });
-
-
-
-    // Insultes //
-
-    if (message.content === "con") {
-        message.delete();
-        message.author.send("Pas d'insulte s'il vous plait sinon vous serez sanctionner !!!")
-    }
-
-    if (message.content === "merde") {
-        message.delete();
-        message.author.send("Pas d'insulte s'il vous plait sinon vous serez sanctionner !!!")
-    }
-
-    if (message.content === "pute") {
-        message.delete();
-        message.author.send("Pas d'insulte s'il vous plait sinon vous serez sanctionner !!!")
-    }
-
-    if (message.content === "pd") {
-        message.delete();
-        message.author.send("Pas d'insulte s'il vous plait sinon vous serez sanctionner !!!")
-    }
-
-    if (message.content === "connard") {
-        message.delete();
-        message.author.send("Pas d'insulte s'il vous plait sinon vous serez sanctionner !!!")
-    }
-
-    if (message.content === "connasse") {
-        message.delete();
-        message.author.send("Pas d'insulte s'il vous plait sinon vous serez sanctionner !!!")
-    }
-
-    if (message.content === "salope") {
-        message.delete();
-        message.author.send("Pas d'insulte s'il vous plait sinon vous serez sanctionner !!!")
-    }
-
-    if (message.content === "bite") {
-        message.delete();
-        message.author.send("Pas d'insulte s'il vous plait sinon vous serez sanctionner !!!")
-    }
-
-    if (message.content === "baisable") {
-        message.delete();
-        message.author.send("Pas d'insulte s'il vous plait sinon vous serez sanctionner !!!")
-    }
-
-    if (message.content === "baise") {
-        message.delete();
-        message.author.send("Pas d'insulte s'il vous plait sinon vous serez sanctionner !!!")
-    }
-
-    if (message.content === "baiser") {
-        message.delete();
-        message.author.send("Pas d'insulte s'il vous plait sinon vous serez sanctionner !!!")
-    }
-
-    if (message.content === "bander") {
-        message.delete();
-        message.author.send("Pas d'insulte s'il vous plait sinon vous serez sanctionner !!!")
-    }
-
-    if (message.content === "branler") {
-        message.delete();
-        message.author.send("Pas d'insulte s'il vous plait sinon vous serez sanctionner !!!")
-    }
-
-    if (message.content === "branlette") {
-        message.delete();
-        message.author.send("Pas d'insulte s'il vous plait sinon vous serez sanctionner !!!")
-    }
-
-    if (message.content === "bordel") {
-        message.delete();
-        message.author.send("Pas d'insulte s'il vous plait sinon vous serez sanctionner !!!")
-    }
-
-    if (message.content === "burnes") {
-        message.delete();
-        message.author.send("Pas d'insulte s'il vous plait sinon vous serez sanctionner !!!")
-    }
-
-    if (message.content === "chatte") {
-        message.delete();
-        message.author.send("Pas d'insulte s'il vous plait sinon vous serez sanctionner !!!")
-    }
-
-    if (message.content === "sexe") {
-        message.delete();
-        message.author.send("Pas d'insulte s'il vous plait sinon vous serez sanctionner !!!")
-    }
-
-    if (message.content === "chiant") {
-        message.delete();
-        message.author.send("Pas d'insulte s'il vous plait sinon vous serez sanctionner !!!")
-    }
-
-    if (message.content === "chiante") {
-        message.delete();
-        message.author.send("Pas d'insulte s'il vous plait sinon vous serez sanctionner !!!")
-    }
-
-    if (message.content === "chiasse") {
-        message.delete();
-        message.author.send("Pas d'insulte s'il vous plait sinon vous serez sanctionner !!!")
-    }
-
-    if (message.content === "chier") {
-        message.delete();
-        message.author.send("Pas d'insulte s'il vous plait sinon vous serez sanctionner !!!")
-    }
-
-    if (message.content === "chiottes") {
-        message.delete();
-        message.author.send("Pas d'insulte s'il vous plait sinon vous serez sanctionner !!!")
-    }
-
-    if (message.content === "conne") {
-        message.delete();
-        message.author.send("Pas d'insulte s'il vous plait sinon vous serez sanctionner !!!")
-    }
-
-    if (message.content === "connerie") {
-        message.delete();
-        message.author.send("Pas d'insulte s'il vous plait sinon vous serez sanctionner !!!")
-    }
-
-    if (message.content === "coucougnettes") {
-        message.delete();
-        message.author.send("Pas d'insulte s'il vous plait sinon vous serez sanctionner !!!")
-    }
-
-    if (message.content === "couilles") {
-        message.delete();
-        message.author.send("Pas d'insulte s'il vous plait sinon vous serez sanctionner !!!")
-    }
-
-    if (message.content === "couillu") {
-        message.delete();
-        message.author.send("Pas d'insulte s'il vous plait sinon vous serez sanctionner !!!")
-    }
-    if (message.content === "cul") {
-        message.delete();
-        message.author.send("Pas d'insulte s'il vous plait sinon vous serez sanctionner !!!")
-    }
-    if (message.content === "déconner") {
-        message.delete();
-        message.author.send("Pas d'insulte s'il vous plait sinon vous serez sanctionner !!!")
-    }
-    if (message.content === "déconneur") {
-        message.delete();
-        message.author.send("Pas d'insulte s'il vous plait sinon vous serez sanctionner !!!")
-    }
-    if (message.content === "emmerder") {
-        message.delete();
-        message.author.send("Pas d'insulte s'il vous plait sinon vous serez sanctionner !!!")
-    }
-});
+}); //Fin de message
 
 client.login(TOKEN);
